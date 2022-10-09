@@ -138,7 +138,7 @@ class TestIngestors(unittest.TestCase):
             PDFIngestor.parse(wrong_file_path)
 
         self.assertEqual(
-            '...sv_file.csv does not contain a pdf file',
+            '...x_file.docx does not contain a pdf file',
             str(e.exception)
         )
 
