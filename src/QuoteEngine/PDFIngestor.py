@@ -35,7 +35,8 @@ class PDFIngestor(IngestorInterface):
         subprocess.call(['pdftotext', path, tmp_file_path])
         with open(tmp_file_path, 'r') as pdf_file:
             line_generator = map(
-                lambda x: x.strip('\n\r').strip(), pdf_file.readlines()
+                lambda x: x.strip('\n\r').strip().replace('"', ''),
+                pdf_file.readlines()
             )
             quote_models = parse_unstructured_text_pager(line_generator)
         os.remove(tmp_file_path)

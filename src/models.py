@@ -11,7 +11,7 @@ class QuoteModel:
 
     def __eq__(self, other) -> bool:
         """Compare two objects."""
-        return ((self.author == other.author) and (self.body == other.body))
+        return (self.author == other.author) and (self.body == other.body)
 
     def __str__(self) -> str:
         """Crate string representation."""

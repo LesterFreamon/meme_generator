@@ -17,5 +17,7 @@ pycodestyle --exclude='./venv*'
 check_validator $? "Pycodestyle"
 pydocstyle
 check_validator $? "Pydocstyle"
+pytest
+check_validator $? "pytest"
 
 echo "Validation Passed!"
