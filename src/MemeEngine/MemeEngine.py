@@ -31,7 +31,7 @@ class MemeEngine:
                 new_height = int((width / original_width) * original_height)
                 im = im.resize(size=(width, new_height))
             draw = ImageDraw.Draw(im)
-            font = ImageFont.truetype('Pillow/Tests/fonts/FreeMono.ttf', 24)
+            font = ImageFont.truetype('_data/Fonts/FreeMono.ttf', 22)
             draw.text((100, 120), text, font=font)
             draw.text((100, 80), author, font=font)
             im.save(image_path)
