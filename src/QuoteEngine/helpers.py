@@ -1,7 +1,7 @@
 """Helper functions for the ingestors."""
 import os
 import pathlib
-from typing import Set, Iterator, Optional, List, Any, Callable
+from typing import Any, Callable, Iterator, List, Optional, Sequence, Set
 
 from .IngestorInterface import IngestorInterface
 from .singleton import AUTHOR_FIELD, BODY_FIELD
@@ -17,8 +17,11 @@ def can_ingest(path: str, ingest_suffixes: Set[str]) -> bool:
     return False
 
 
-def check_fieldnames(file_fieldsnames: Iterator[str]) -> None:
+def check_fieldnames(file_fieldsnames: Optional[Sequence[str]]) -> None:
     """Check if all of the required fields are found."""
+    if file_fieldsnames is None:
+        raise ValueError(f'File is empty')
+
     if AUTHOR_FIELD not in file_fieldsnames:
         raise ValueError(f'"{AUTHOR_FIELD}" field could not be found in file')
 
@@ -26,7 +29,7 @@ def check_fieldnames(file_fieldsnames: Iterator[str]) -> None:
         raise ValueError(f'"{BODY_FIELD}" field could not be found in file')
 
 
-def parse_text_line(line: str) -> Optional[QuoteModel]:
+def parse_text_line(line: str) -> QuoteModel:
     """Parse one line of text."""
     if '-' not in line:
         raise ValueError(f'{line} cannot be parsed.')

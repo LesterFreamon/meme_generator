@@ -3,7 +3,7 @@ from datetime import datetime
 import os
 import random
 
-from PIL import Image, ImageDraw, ImageFont
+from PIL import Image, ImageDraw, ImageFont  # type: ignore[import]
 
 
 class MemeEngine:

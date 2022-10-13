@@ -1,7 +1,7 @@
 """Ingest docx files."""
 from typing import List
 
-import docx
+import docx  # type: ignore[import]
 
 from .helpers import can_ingest, parse_decorater, parse_unstructured_text_pager
 from .IngestorInterface import IngestorInterface
@@ -14,7 +14,7 @@ class DocxIngestor(IngestorInterface):
     suffixes = {'.docx'}
 
     @classmethod
-    def can_ingest(cls, path: str) -> bool:
+    def can_ingest(cls, path: str):
         """Check whether the given path holds a docx format."""
         return can_ingest(path, cls.suffixes)
 
