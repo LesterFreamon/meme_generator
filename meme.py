@@ -1,16 +1,21 @@
 """Create memes random memes on random images."""
 import os
 import random
+from typing import List, Optional
 
-from src.MemeEngine.MemeEngine import MemeEngine
-from src.QuoteEngine.Ingestor import Ingestor
-from src.models import QuoteModel
+from src.MemeEngine.MemeEngine import MemeEngine  # type: ignore
+from src.QuoteEngine.Ingestor import Ingestor  # type: ignore
+from src.models import QuoteModel  # type: ignore
 
 from argparse import ArgumentParser
 
 
-def generate_meme(path=None, body=None, author=None):
-    """Generate a meme given an path and a quote."""
+def generate_meme(
+        path: Optional[str] = None,
+        body: Optional[str] = None,
+        author: Optional[str] = None
+) -> str:
+    """Generate a meme given a path and a quote."""
     img = None
     quote = None
     if path is None:
@@ -28,9 +33,11 @@ def generate_meme(path=None, body=None, author=None):
                        './_data/DogQuotes/docx_file.docx',
                        './_data/DogQuotes/pdf_file.pdf',
                        './_data/DogQuotes/csv_file.csv']
-        quotes = []
+        quotes: List[QuoteModel] = []
         for f in quote_files:
-            quotes.extend(Ingestor.parse(f))
+            tmp_quotes = Ingestor.parse(f)
+            if tmp_quotes is not None:
+                quotes.extend(tmp_quotes)
 
         quote = random.choice(quotes)
     else:

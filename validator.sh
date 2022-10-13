@@ -19,5 +19,7 @@ pydocstyle
 check_validator $? "Pydocstyle"
 pytest
 check_validator $? "pytest"
+mypy . --exclude venv --exclude tests --explicit-package-bases --namespace-packages
+check_validator $? "mypy"
 
 echo "Validation Passed!"
