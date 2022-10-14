@@ -1,0 +1,6 @@
+{% extends "meme_form.html" %}
+{% block title %}Meme Generator{% endblock %}
+{% block body %}
+    <h1>Invalid image file path, please try again</h1>
+    <a class="btn btn-primary" href="{{url_for('meme_form')}}">Creator</a>
+{% endblock %}
