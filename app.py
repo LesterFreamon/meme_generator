@@ -66,7 +66,7 @@ def meme_post():
         return render_template('meme_error.html')
     file_name = datetime.now().strftime('%Y_%m_%d_at_%H_%M_%S')
     file_path = f'./tmp/{file_name}.jpg'
-    with open(file_path, 'w') as f:
+    with open(file_path, 'wb') as f:
         f.write(r.content)
 
     author = request.form['author']
