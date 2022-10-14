@@ -26,16 +26,16 @@ def generate_meme(
 
         img = random.choice(imgs)
     else:
-        img = path[0]
+        img = path
 
     if body is None:
-        quote_files = ['./_data/DogQuotes/txt_file.txt',
-                       './_data/DogQuotes/docx_file.docx',
-                       './_data/DogQuotes/pdf_file.pdf',
-                       './_data/DogQuotes/csv_file.csv']
+        quote_files = ['./_data/DogQuotes/DogQuotesTXT.txt',
+                       './_data/DogQuotes/DogQuotesDOCX.docx',
+                       './_data/DogQuotes/DogQuotesPDF.pdf',
+                       './_data/DogQuotes/DogQuotesCSV.csv']
         quotes: List[QuoteModel] = []
-        for f in quote_files:
-            tmp_quotes = Ingestor.parse(f)
+        for quote_file in quote_files:
+            tmp_quotes = Ingestor.parse(quote_file)
             if tmp_quotes is not None:
                 quotes.extend(tmp_quotes)
 

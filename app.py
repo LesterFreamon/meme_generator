@@ -59,7 +59,11 @@ def meme_post():
         return render_template('meme_form.html')
 
     img_url = request.form['image_url']
-    r = requests.get(img_url, verify=False)
+    try:
+        r = requests.get(img_url, verify=False)
+    except requests.exceptions.InvalidURL:
+        print("InvalidURL: Could not retrieve and image from the given url.")
+        return render_template('meme_error.html')
     file_name = datetime.now().strftime('%Y_%m_%d_at_%H_%M_%S')
     file_path = f'./tmp/{file_name}.jpg'
     with open(file_path, 'w') as f:
